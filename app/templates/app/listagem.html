@@ -11,14 +11,17 @@
     <h2>Lista de Receitas</h2>
 
     <ul>
+        <form method="GET">
+            <div id="divBusca">
+                <input type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
+                <button type="submit">Buscar</button>
+            </div>
+        </form>
         <h4>----- Nome ----------- Categoria -----</h4>
     {% for receita in receitas %}
         <li>{{ receita.nome }} - {{ receita.categoria }}</li>
     {% endfor %}
         <h4>--------------------------------------------</h4>
-    </ul>
-    <ul>
-        <li><a href="{% url 'nova' %}">Nova Receita</a></li>
     </ul>
 </body>
 </html>
