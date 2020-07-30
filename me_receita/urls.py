@@ -20,5 +20,5 @@ from app.views import nova_receita, listagem
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cadastro/', nova_receita, name='nova'),
-    path('lisagem/', listagem, name='lista'),
+    path('listagem/', listagem, name='lista'),
 ]
