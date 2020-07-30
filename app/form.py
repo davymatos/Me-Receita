@@ -6,4 +6,4 @@ from .models import Receita
 class ReceitaForm(ModelForm):
     class Meta:
         model = Receita
-        fields = ['nome', 'principal', 'ingredientes', 'preparo', 'categoria']
+        fields = ['nome', 'ingredientes', 'preparo', 'categoria']

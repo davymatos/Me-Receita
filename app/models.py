@@ -8,8 +8,7 @@ class Categoria(models.Model):
 
 class Receita(models.Model):
     nome = models.CharField(max_length=255)
-    principal = models.CharField(max_length=100)
-    ingredientes = models.CharField(max_length=255)
+    ingredientes = models.TextField(null=True, blank=True)
     preparo = models.TextField(null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
