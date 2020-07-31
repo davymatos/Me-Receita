@@ -9,19 +9,41 @@
 </head>
 <body>
     <h2>Lista de Receitas</h2>
-
+    <form action="." method="GET">
+        <input type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
+        <input type="submit" value="Buscar"/>
+    </form>
+    {% if receitas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for receita in receitas %}
+                    <tr>
+                        <td>{{ receita.nome }}</td>
+                        <td>{{ receita.categoria }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Sem itens na lista.</p>
+    {% endif %}
+    <!--
     <ul>
-        <form method="GET">
-            <div id="divBusca">
-                <input type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
-                <button type="submit">Buscar</button>
-            </div>
+        <form action="." method="GET">
+            <input type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
+            <input type="submit" value="Buscar"/>
         </form>
         <h4>----- Nome ----------- Categoria -----</h4>
-    {% for receita in receitas %}
-        <li>{{ receita.nome }} - {{ receita.categoria }}</li>
-    {% endfor %}
+        {% for receita in receitas %}
+            <li>{{ receita.nome }} - {{ receita.categoria }}</li>
+        {% endfor %}
         <h4>--------------------------------------------</h4>
-    </ul>
+    </ul>-->
 </body>
 </html>

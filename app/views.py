@@ -1,32 +1,42 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .models import Receita
 from .form import ReceitaForm
+from django.views.generic import CreateView, UpdateView, ListView
 from django.db.models import Q
 
 
 def listagem(request):
-    busca = request.GET.get("busca")
+    template_name = 'app/listagem.html'
+    data = Receita.objects.all()
+    busca = request.GET.get('busca')
     if busca:
-        data = Receita.objects.filter(
-            Q(nome=busca) |
-            Q(ingredientes=busca)
-        ).distinct()
-    else:
-        data = {'receitas': Receita.objects.all()}
-    return render(request, 'app/listagem.html', data)
+        data = data.filter(nome__icontains=busca)
+    context = {'receitas': data}
+    return render(request, template_name, context)
 
 
-def buscar(request, nome):
-    data = {}
-    receita = Receita.objects.get(nome=nome)
-    form = ReceitaForm(request.POST or None, instance=receita)
+class Buscar(ListView):
+    model = Receita
+    template_name = 'app/listagem.html'
+    paginate_by = 10
 
-    if form.is_valid():
-        return redirect('lista')
+    def get_queryset(self):
+        queryset = super(Buscar, self).get_queryset()
+        busca = self.request.GET.get('busca')
+        if busca:
+            queryset = queryset.filter(
+                Q(nome__icontains=busca) |
+                Q(ingredientes__icontains=busca)
+            )
+        return queryset
 
-    data['form'] = form
-    data['receita'] = receita
-    return render(request, 'app/form.html', data)
+
+def receita_json(request, pk):
+    ''' Retorna o produto, id e estoque. '''
+    receita = Receita.objects.filter(pk=pk)
+    data = [item.to_dict_json() for item in receita]
+    return JsonResponse({'data': data})
 
 
 def nova_receita(request):
