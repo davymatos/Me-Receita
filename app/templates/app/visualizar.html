@@ -9,7 +9,7 @@
 </head>
 <body>
     <a href="{% url 'lista' %}">Voltar</a>
-    <h2>Nova Receita</h2>
+    <h2>Receita do {{ receita.nome }}</h2>
     <div class="formulario">
         <form method="POST" action="">
             {% csrf_token %}
