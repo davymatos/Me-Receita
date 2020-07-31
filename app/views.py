@@ -49,3 +49,17 @@ def nova_receita(request):
 
     data['form'] = form
     return render(request, 'app/form.html', data)
+
+
+def ver_receita(request, pk):
+    data = {}
+    receita = Receita.objects.get(pk=pk)
+    form = ReceitaForm(request.POST or None, instance=receita)
+
+    if form.is_valid():
+        form.save()
+        return redirect('lista')
+
+    data['form'] = form
+    data['receita'] = receita
+    return render(request, 'app/visualizar.html', data)

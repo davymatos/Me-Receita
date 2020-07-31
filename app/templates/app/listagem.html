@@ -24,7 +24,7 @@
             <tbody>
                 {% for receita in receitas %}
                     <tr>
-                        <td>{{ receita.nome }}</td>
+                        <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
                         <td>{{ receita.categoria }}</td>
                     </tr>
                 {% endfor %}
