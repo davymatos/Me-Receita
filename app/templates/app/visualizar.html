@@ -1,13 +1,13 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-    <a href="{% url 'lista' %}">Voltar</a>
-    <h2>Receita do {{ receita.nome }}</h2>
-    <div class="formulario">
+    <h3>Receita do {{ receita.nome }}</h3>
+    <div class="form-group">
         <form>
             {% csrf_token %}
 
             {{ form.as_p }}
         </form>
+        <a class="btn btn-secondary" href="{% url 'lista' %}" role="button">Voltar</a>
     </div>
 {% endblock %}

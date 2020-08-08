@@ -1,14 +1,14 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-    <h2>Nova Receita</h2>
-    <div class="formulario">
+    <h3>Nova Receita</h3>
+    <div class="form-group">
         <form method="POST" action="">
             {% csrf_token %}
 
             {{ form.as_p }}
 
-            <button type="submit">Salvar</button>
+            <button type="submit" class="btn btn-lg btn-block text-uppercase font-weight-bold">Salvar</button>
         </form>
     </div>
 {% endblock %}
