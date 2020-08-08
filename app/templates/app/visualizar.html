@@ -11,7 +11,7 @@
     <a href="{% url 'lista' %}">Voltar</a>
     <h2>Receita do {{ receita.nome }}</h2>
     <div class="formulario">
-        <form method="POST" action="">
+        <form>
             {% csrf_token %}
 
             {{ form.as_p }}

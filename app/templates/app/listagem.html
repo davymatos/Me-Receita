@@ -1,13 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Me Receita</title>
-</head>
-<body>
+{% extends "app/base.html" %}
+
+{% block content %}
     <h2>Lista de Receitas</h2>
     <form action="." method="GET">
         <input type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
@@ -24,6 +17,7 @@
             <tbody>
                 {% for receita in receitas %}
                     <tr>
+                        {% csrf_token %}
                         <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
                         <td>{{ receita.categoria }}</td>
                     </tr>
@@ -32,9 +26,6 @@
         </table>
     {% else %}
         <p>Sem itens na lista.</p>
-        <iframe name=Destaques src="" frameBorder=0 width=100% height=480px>
-        <div align="center"></div>
-        </iframe>
     {% endif %}
     <!--
     <ul>
@@ -48,5 +39,4 @@
         {% endfor %}
         <h4>--------------------------------------------</h4>
     </ul>-->
-</body>
-</html>
+{% endblock %}

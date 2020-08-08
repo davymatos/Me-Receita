@@ -6,6 +6,11 @@ from django.views.generic import CreateView, UpdateView, ListView
 from django.db.models import Q
 
 
+def home(request):
+    data = {}
+    return render(request, 'app/base.html', data)
+
+
 def listagem(request):
     template_name = 'app/listagem.html'
     data = Receita.objects.all()
