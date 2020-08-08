@@ -1,13 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Me Receita</title>
-</head>
-<body>
+{% extends "app/base.html" %}
+
+{% block content %}
     <h2>Nova Receita</h2>
     <div class="formulario">
         <form method="POST" action="">
@@ -18,5 +11,4 @@
             <button type="submit">Salvar</button>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}
