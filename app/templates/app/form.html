@@ -2,13 +2,12 @@
 
 {% block content %}
     <h3>Nova Receita</h3>
-    <div class="form-group">
-        <form method="POST" action="">
+        <form method="POST" action="" class="post-form">
             {% csrf_token %}
-
-            {{ form.as_p }}
-
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
             <button type="submit" class="btn btn-lg btn-block text-uppercase font-weight-bold">Salvar</button>
         </form>
-    </div>
+
 {% endblock %}
