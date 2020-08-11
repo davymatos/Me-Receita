@@ -1,20 +1,22 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-    <form class="form-inline my-2 my-lg-2" action="." method="GET">
-        <input class="form-control mr-sm-2" type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
-    <h3>Lista de Receitas</h3>
-    {% if receitas %}
-        <table>
-            <thead>
+    <div class="container">
+      <div class="row">
+        <h3 id="tlista">Lista de Receitas</h3>
+        <form class="form-inline my-2 my-lg-2" action="." method="GET">
+            <input class="form-control mr-sm-2" type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
+            <button class="btn btn-outline-success my-0 my-sm-0" type="submit">Buscar</button>
+        </form>
+        {% if receitas %}
+            <table class="table table-hover">
+              <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Categoria</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Categoria</th>
                 </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
                 {% for receita in receitas %}
                     <tr>
                         {% csrf_token %}
@@ -22,21 +24,10 @@
                         <td>{{ receita.categoria }}</td>
                     </tr>
                 {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>Sem itens na lista.</p>
-    {% endif %}
-    <!--
-    <ul>
-        <form action="." method="GET">
-            <input type="text" id="txtBusca" placeholder="Buscar..." name="busca"/>
-            <input type="submit" value="Buscar"/>
-        </form>
-        <h4>----- Nome ----------- Categoria -----</h4>
-        {% for receita in receitas %}
-            <li>{{ receita.nome }} - {{ receita.categoria }}</li>
-        {% endfor %}
-        <h4>--------------------------------------------</h4>
-    </ul>-->
+            </table>
+        {% else %}
+            <p>Sem itens na lista.</p>
+        {% endif %}
+        </div>
+    </div>
 {% endblock %}
