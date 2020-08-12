@@ -57,14 +57,8 @@ def nova_receita(request):
 
 
 def ver_receita(request, pk):
-    data = {}
-    receita = Receita.objects.get(pk=pk)
-    form = ReceitaForm(request.POST or None, instance=receita)
+    template_name = 'app/visualizar.html'
+    data = Receita.objects.filter(pk=pk)
 
-    if form.is_valid():
-        form.save()
-        return redirect('lista')
-
-    data['form'] = form
-    data['receita'] = receita
-    return render(request, 'app/visualizar.html', data)
+    context = {'receitas': data}
+    return render(request, template_name, context)

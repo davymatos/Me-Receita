@@ -24,10 +24,10 @@
                         <td>{{ receita.categoria }}</td>
                     </tr>
                 {% endfor %}
-                {% else %}
-                    <h4>Sem itens na lista.</h4>
-                {% endif %}
             </table>
+        {% else %}
+            <h4>Sem itens na lista.</h4>
+        {% endif %}
         </div>
     </div>
 {% endblock %}
