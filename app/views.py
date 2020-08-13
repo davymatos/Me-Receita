@@ -4,6 +4,11 @@ from .models import Receita
 from .form import ReceitaForm
 from django.views.generic import CreateView, UpdateView, ListView
 from django.db.models import Q
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
+
+
+# Views
 
 
 def home(request):
@@ -62,3 +67,23 @@ def ver_receita(request, pk):
 
     context = {'receitas': data}
     return render(request, template_name, context)
+
+
+# Views Auth
+
+def cadastro(request):
+    template_name = 'auth/cadastro.html'
+    form = UserCreationForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password1']
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('lista')
+    else:
+        form = UserCreationForm()
+
+        context = {'form': form}
+        return render(request, template_name, context)
