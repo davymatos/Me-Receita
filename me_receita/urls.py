@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import nova_receita, ver_receita, home
+from app.views import nova_receita, ver_receita, home, sair
 
 urlpatterns = [
     path('home/', home),
@@ -24,4 +24,6 @@ urlpatterns = [
     path('receita/<int:pk>', ver_receita, name='receita'),
     path('', include('app.urls')),
     path('cadastro/', include('django.contrib.auth.urls')),
+    path('login/', include('django.contrib.auth.urls')),
+    path('deslogar', sair),
 ]

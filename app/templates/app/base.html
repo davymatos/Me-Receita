@@ -24,15 +24,26 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'lista' %}">Lista de Receitas</a>
           </li>
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Usuario
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Cadastre-se</a>
-              <a class="dropdown-item" href="#">Login</a>
-            </div>
-          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item active dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.username }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="deslogar">Logout</a>
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item active dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Usuario
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'cadastro' %}">Cadastre-se</a>
+                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+              </div>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </nav>

@@ -1,11 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from .models import Receita
 from .form import ReceitaForm
 from django.views.generic import CreateView, UpdateView, ListView
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 # Views
@@ -87,3 +88,31 @@ def cadastro(request):
 
         context = {'form': form}
         return render(request, template_name, context)
+
+
+def login(request):
+    if request.user.id:
+        return HttpResponseRedirect('lista')
+    if request.POST:
+        username = request.POST.get('usuario')
+        password = request.POST.get('senha')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                prx = request.GET.get('next')
+                if prx:
+                    return HttpResponseRedirect(prx)
+                else:
+                    return HttpResponseRedirect('lista')
+            else:
+                erro = 'Usuário inativo'
+        else:
+            erro = "Usuário ou senha inválido"
+    return render(request, 'auth/login.html', locals())
+
+
+@login_required
+def sair(request):
+    logout(request)
+    return HttpResponseRedirect('/login')
