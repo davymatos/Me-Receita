@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
-    <h1>Registration Page!</h1>
-    <form method="post" action="{% url 'cadastro' %}">
+{% extends "auth/inicio.html" %}
+
+{% block content %}
+    <h4>Registration Page!</h4>
+    <form method="POST" action="" class="post-form">
         {% csrf_token %}
-
         <label>Nome</label>
-        <input type="text" name="nome" id="nome" value="{{ usuario.nome }}" />
+        <input type="text" name="nome" id="nome" value="{{ usuario.nome }}"/>
+        <label>Email</label>
+        <input type="text" name="email" id="email" value="{{ usuario.email }}"/>
+        <label>Senha</label>
+        <input type="password" name="senha" id="senha" value="{{ usuario.senha }}"/>
 
-        <input type="submit" value="Cadastrar">
+        <button type="submit" class="btn btn-lg btn-block text-uppercase font-weight-bold">Cadastrar</button>
     </form>
-</body>
-</html>
+{% endblock %}
