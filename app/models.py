@@ -16,3 +16,13 @@ class Receita(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Usuario(models.Model):
+    nome = models.CharField(max_length=255)
+    email = models.EmailField(max_length=100)
+    senha = models.CharField(max_length=100)
+    receita = models.ForeignKey(Receita, null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nome

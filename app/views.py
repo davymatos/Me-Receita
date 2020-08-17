@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from .models import Receita
 from .form import ReceitaForm
+from .form import UsuarioForm
 from django.views.generic import CreateView, UpdateView, ListView
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
@@ -73,21 +74,16 @@ def ver_receita(request, pk):
 # Views Auth
 
 def cadastro(request):
-    template_name = 'auth/cadastro.html'
-    form = UserCreationForm(request.POST or None)
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password1']
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect('lista')
+        if form.is_valid():
+            return HttpResponseRedirect('/')
+
     else:
-        form = UserCreationForm()
+        form = UsuarioForm()
 
-        context = {'form': form}
-        return render(request, template_name, context)
+    return render(request, 'auth/cadastro.html', {'form': form})
 
 
 def login(request):

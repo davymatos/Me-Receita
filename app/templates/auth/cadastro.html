@@ -9,11 +9,8 @@
     <form method="post" action="{% url 'cadastro' %}">
         {% csrf_token %}
 
-        {% if form.errors %}
-        <p>There are errors in the form!</p>
-        {% endif %}
-
-        {{ form }}
+        <label>Nome</label>
+        <input type="text" name="nome" id="nome" value="{{ usuario.nome }}" />
 
         <input type="submit" value="Cadastrar">
     </form>
