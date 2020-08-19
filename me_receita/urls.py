@@ -18,7 +18,7 @@ from django.urls import path, include
 from app.views import nova_receita, ver_receita, home, sair
 
 urlpatterns = [
-    path('home/', home),
+    path('perfil/', home, name='usuario'),
     path('admin/', admin.site.urls),
     path('nova/', nova_receita, name='nova'),
     path('receita/<int:pk>', ver_receita, name='receita'),

@@ -1,0 +1,36 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container">
+          <div class="row">
+              <h3 id="tlista">Bem-Vindo(a) {{ user.username }}</h3>
+            <form class="input-group mb-3" action="." method="GET">
+                <input type="text" class="form-control mr-sm-2" aria-describedby="inputGroup-sizing-default"  id="txtBusca" placeholder="Buscar..." name="busca"/>
+                <button class="btn btn-outline-success my-0 my-sm-0" type="submit">Buscar</button>
+            </form>
+            {% if receitas %}
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Categoria</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for receita in receitas %}
+                        <tr>
+                            {% csrf_token %}
+                            <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
+                            <td>{{ receita.categoria }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h4>Sem itens na lista.</h4>
+                <a class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold" href="{% url 'nova' %}" role="button">Nova Receita</a>
+            {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

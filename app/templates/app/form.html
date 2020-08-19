@@ -1,13 +1,14 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-    <h3>Nova Receita</h3>
+    {% if user.is_authenticated %}
+        <h3>Nova Receita</h3>
         <form method="POST" action="" class="post-form">
             {% csrf_token %}
             <div class="form-group">
                 {{ form.as_p }}
             </div>
-            <button type="submit" class="btn btn-lg btn-block text-uppercase font-weight-bold">Salvar</button>
+            <button type="submit" class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold">Salvar</button>
         </form>
-
+    {% endif %}
 {% endblock %}

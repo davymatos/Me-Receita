@@ -17,7 +17,7 @@ from django.contrib.auth import authenticate, logout, login
 
 def home(request):
     data = {}
-    return render(request, 'app/base.html', data)
+    return render(request, 'app/perfil.html', data)
 
 
 def listagem(request):
