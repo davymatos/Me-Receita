@@ -22,7 +22,6 @@
                         <tr>
                             {% csrf_token %}
                             <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
-                            <td>{{ receita.categoria }}</td>
                         </tr>
                     {% endfor %}
                 </table>

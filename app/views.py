@@ -2,9 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from django.http import HttpResponse
-from .models import Receita, Usuario
+from .models import Receita
 from .form import ReceitaForm
-from .form import UsuarioForm
 from .form import LoginForm
 from django.views.generic import CreateView, UpdateView, ListView
 from django.db.models import Q

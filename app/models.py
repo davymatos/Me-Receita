@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -13,16 +14,8 @@ class Receita(models.Model):
     ingredientes = models.TextField(null=True, blank=True)
     preparo = models.TextField(null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome
 
-
-class Usuario(models.Model):
-    nome = models.CharField(max_length=255)
-    email = models.EmailField(max_length=100)
-    senha = models.CharField(max_length=100)
-    receita = models.ForeignKey(Receita, null=True, blank=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nome
