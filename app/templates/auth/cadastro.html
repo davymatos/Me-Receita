@@ -1,16 +1,36 @@
-{% extends "auth/inicio.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de usuários</title>
+</head>
+<body>
 
-{% block content %}
-    <h4>Registration Page!</h4>
-    <form method="POST" action="" class="post-form">
-        {% csrf_token %}
-        <label>Nome</label>
-        <input type="text" name="nome" id="nome" value="{{ usuario.nome }}"/>
-        <label>Email</label>
-        <input type="text" name="email" id="email" value="{{ usuario.email }}"/>
-        <label>Senha</label>
-        <input type="password" name="senha" id="senha" value="{{ usuario.senha }}"/>
+<form method="post">
+    {% csrf_token %}
 
-        <button type="submit" class="btn btn-lg btn-block text-uppercase font-weight-bold">Cadastrar</button>
-    </form>
-{% endblock %}
+    <div class="form-group">
+        {{form_usuario.username.errors}}
+        <label>Username: </label>
+        {{form_usuario.username}}
+    </div>
+
+    <div class="form-group">
+        {{form_usuario.password1.errors}}
+        <label>Senha: </label>
+        {{form_usuario.password1}}
+    </div>
+
+    <div class="form-group">
+        {{form_usuario.password2.errors}}
+        <label>Confirmação de senha: </label>
+        {{form_usuario.password2}}
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+    </div>
+</form>
+
+</body>
+</html>

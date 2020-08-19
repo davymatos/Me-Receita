@@ -8,7 +8,7 @@ from .form import UsuarioForm
 from .form import LoginForm
 from django.views.generic import CreateView, UpdateView, ListView
 from django.db.models import Q
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, logout, login
 
 
@@ -76,39 +76,32 @@ def ver_receita(request, pk):
 # Views Auth
 
 def cadastro(request):
-    if request.method == 'POST':
-        form = UsuarioForm(request.POST or None)
-
-        if form.is_valid():
-            return HttpResponseRedirect('/')
-
+    if request.method == "POST":
+        form_usuario = UserCreationForm(request.POST)
+        if form_usuario.is_valid():
+            form_usuario.save()
+            return redirect('lista')
     else:
-        form = UsuarioForm()
-
-    return render(request, 'auth/cadastro.html', {'form': form})
+        form_usuario = UserCreationForm()
+    return render(request, 'auth/cadastro.html', {'form_usuario': form_usuario})
 
 
 def entrar(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(email=cd['email'],
-                                senha=cd['senha'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated', 'successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid Login')
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        usuario = authenticate(request, username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            return redirect('lista')
+        else:
+            form_login = AuthenticationForm()
     else:
-        form = LoginForm()
-    return render(request, 'auth/login.html', {'form': form})
+        form_login = AuthenticationForm()
+    return render(request, 'auth/login.html', {'form_login': form_login})
 
 
 @login_required
 def sair(request):
     logout(request)
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/login/login/')
