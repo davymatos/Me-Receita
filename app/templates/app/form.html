@@ -5,9 +5,34 @@
         <h3>Nova Receita</h3>
         <form method="POST" action="" class="post-form">
             {% csrf_token %}
-            <div class="form-group">
-                {{ form.as_p }}
+            <div class="row">
+                <div class="col">
+                    <label>Nome: </label>
+                    {{ form.nome }}
+                </div>
+                <div class="col">
+                    <label>Categoria: </label>
+                    {{ form.categoria }}
+                </div>
             </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>Ingredientes: </label>
+                    {{ form.ingredientes }}
+                </div>
+                <div class="col">
+                    <label>Preparo: </label>
+                    {{ form.preparo }}
+                </div>
+            </div>
+            <br>
+            <label for="usuario">Usuario: </label>
+            <select id="usuario" name="usuario" class="form-control">
+                <option selected>{{ user.username }}</option>
+            </select>
+            <br>
+
             <button type="submit" class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold">Salvar</button>
         </form>
     {% endif %}

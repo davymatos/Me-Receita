@@ -20,8 +20,12 @@
                   <tbody>
                     {% for receita in receitas %}
                         <tr>
-                            {% csrf_token %}
-                            <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
+                            {% if receita.usuario == user.username %}
+                                {% csrf_token %}
+                                <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
+                                <td>{{ receita.categoria }}</td>
+                                <td>{{ receita.usuario }}</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </table>
