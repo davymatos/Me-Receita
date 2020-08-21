@@ -3,7 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <h3>Nova Receita</h3>
-        <form method="POST" action="" class="post-form">
+        <form method="POST" action="">
             {% csrf_token %}
             <div class="row">
                 <div class="col">
@@ -32,8 +32,9 @@
                 <option selected>{{ user.username }}</option>
             </select>
             <br>
-
-            <button type="submit" class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold">Salvar</button>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold">
+            </div>
         </form>
     {% endif %}
 {% endblock %}

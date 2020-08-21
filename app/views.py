@@ -15,8 +15,11 @@ from django.contrib.auth import authenticate, logout, login
 
 
 def home(request):
-    data = {}
-    return render(request, 'app/perfil.html', data)
+    template_name = 'app/perfil.html'
+    data = Receita.objects.all()
+
+    context = {'receitas': data}
+    return render(request, template_name, context)
 
 
 def listagem(request):

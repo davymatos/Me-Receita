@@ -13,14 +13,15 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">Nome</th>
-                      <th scope="col">Categoria</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Usuario</th>
                     </tr>
                   </thead>
                   <tbody>
                     {% for receita in receitas %}
                         <tr>
-                            {% if receita.usuario == user.username %}
+                            {% if receita.usuario %}
                                 {% csrf_token %}
                                 <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
                                 <td>{{ receita.categoria }}</td>
@@ -31,8 +32,8 @@
                 </table>
             {% else %}
                 <h4>Sem itens na lista.</h4>
-                <a class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold" href="{% url 'nova' %}" role="button">Nova Receita</a>
             {% endif %}
+            <a class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold" href="{% url 'nova' %}" role="button">Nova Receita</a>
             </div>
         </div>
     {% endif %}

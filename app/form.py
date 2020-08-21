@@ -7,7 +7,7 @@ from .models import Receita
 class ReceitaForm(ModelForm):
     class Meta:
         model = Receita
-        fields = ['nome', 'ingredientes', 'preparo', 'categoria', 'usuario']
+        fields = ['nome', 'ingredientes', 'preparo', 'categoria']
         usuario = forms.CharField(label='usuario', max_length=100)
 
 
