@@ -21,12 +21,12 @@
                   <tbody>
                     {% for receita in receitas %}
                         <tr>
-                            {% if receita.usuario %}
-                                {% csrf_token %}
+                            {% csrf_token %}
+                            {% ifequal receita.usuario user %}
                                 <td><a href="{% url 'receita' receita.id %}">{{ receita.nome }}</a></td>
                                 <td>{{ receita.categoria }}</td>
                                 <td>{{ receita.usuario }}</td>
-                            {% endif %}
+                            {% endifequal %}
                         </tr>
                     {% endfor %}
                 </table>

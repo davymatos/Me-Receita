@@ -17,6 +17,9 @@ from django.contrib.auth import authenticate, logout, login
 def home(request):
     template_name = 'app/perfil.html'
     data = Receita.objects.all()
+    busca = request.GET.get('busca')
+    if busca:
+        data = data.filter(nome__icontains=busca)
 
     context = {'receitas': data}
     return render(request, template_name, context)
