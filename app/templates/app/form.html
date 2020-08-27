@@ -7,34 +7,28 @@
             {% csrf_token %}
             <div class="row">
                 <div class="col">
-                    <label for="nome">Nome: </label>
-                    <input class="form-control" id="nome" name="nome">
+                    <label>Nome: </label>
+                    {{ form.nome }}
                 </div>
                 <div class="col">
-                    <label for="categoria">Categoria: </label>
-                    <select id="categoria" name="categoria" class="form-control">
-                    <option>{{ categoria.nome }}</option>
-                    <option>...</option>
-                </select>
+                    <label>Categoria: </label>
+                    {{ form.categoria }}
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
-                    <label for="ingredientes">Ingredientes: </label>
-                    <textarea class="form-control" id="ingredientes" name="ingredientes" rows="5"></textarea>
+                    <label>Ingredientes: </label>
+                    {{ form.ingredientes }}
                 </div>
                 <div class="col">
-                    <label for="preparo">Preparo: </label>
-                    <textarea class="form-control" id="preparo" name="preparo" rows="5"></textarea>
+                    <label>Preparo: </label>
+                    {{ form.preparo }}
                 </div>
             </div>
             <br>
-            <label for="usuario">Usuario: </label>
-            <select id="usuario" name="usuario" class="form-control">
-                <option>{{ user.username }}</option>
-                <option>...</option>
-            </select>
+            <label>Usuario: </label>
+            {{ form.usuario }}
             <br>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-outline-secondary btn-lg btn-block text-uppercase font-weight-bold">
