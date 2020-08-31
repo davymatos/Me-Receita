@@ -4,10 +4,12 @@ from .models import Categoria
 from .models import Receita
 
 
-class ReceitaForm(ModelForm):
+class ReceitaForm(forms.ModelForm):
     class Meta:
         model = Receita
         fields = ['nome', 'ingredientes', 'preparo', 'categoria', 'usuario']
+
+        usuario = forms.CharField(widget=forms.Select())
 
 
 class LoginForm(forms.Form):
