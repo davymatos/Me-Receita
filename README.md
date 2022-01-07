@@ -1,6 +1,8 @@
 # Me-Receita
 Me Receita é uma aplicação web desenvolvida em Django(Python), HTML, CSS e um banco de dados que guarda diversas receitas culinárias que poderão ser consultadas por qualquer pessoa de maneira rápida e simples.
 
+Este projeto teve o como objetivo de aprofundar na linguagem Python e estudar o framework Django.
+
 ## Como rodar o projeto:
 - Clone o repositorio
 - Crie um ambiente virtual com python 3
